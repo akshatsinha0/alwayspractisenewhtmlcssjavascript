@@ -2,6 +2,7 @@
     --neon-lime: #39ff14;
     --neon-lime-glow: rgba(57, 255, 20, 0.7);
     --dark-bg: #0a0a0a;
+    --form-bg: #1a1a1a;
     --grid-gap: 2px;
     --grid-size: 20px;
 }
@@ -66,39 +67,120 @@ body {
         linear-gradient(0deg, transparent 98%, var(--neon-lime) 100%);
     background-size: var(--grid-size) var(--grid-size);
     filter: blur(0.5px);
-    opacity: 0.5;
+    opacity: 0.3;
     z-index: -1;
 }
 
-/* Flowing light effect through grid gaps */
+/* Directional flowing light animations */
 .flowing-light {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 300%; /* Extended height for continuous flow */
-    background: repeating-linear-gradient(
-        0deg,
-        transparent 0%,
-        transparent 30%,
-        rgba(57, 255, 20, 0.1) 45%,
-        rgba(57, 255, 20, 0.3) 50%, 
-        rgba(57, 255, 20, 0.1) 55%,
-        transparent 70%,
-        transparent 100%
-    );
+    height: 100%;
     pointer-events: none;
     z-index: 0;
-    animation: flowDown 8s linear infinite;
-    filter: blur(1px);
+    transition: opacity 0.5s ease;
+    opacity: 0;
 }
 
-@keyframes flowDown {
+/* Top to bottom flow */
+.flowing-light.top-to-bottom {
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(57, 255, 20, 0.1) 10%,
+        rgba(57, 255, 20, 0.3) 20%,
+        rgba(57, 255, 20, 0.5) 30%,
+        rgba(57, 255, 20, 0.3) 40%,
+        rgba(57, 255, 20, 0.1) 50%,
+        transparent 60%
+    );
+    height: 300%;
+    animation: flowTopToBottom 2.5s linear;
+    filter: blur(2px);
+}
+
+@keyframes flowTopToBottom {
     0% {
         transform: translateY(-66.6%);
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+/* Right to left flow */
+.flowing-light.right-to-left {
+    background: linear-gradient(to left,
+        transparent 0%,
+        rgba(57, 255, 20, 0.1) 10%,
+        rgba(57, 255, 20, 0.3) 20%,
+        rgba(57, 255, 20, 0.5) 30%,
+        rgba(57, 255, 20, 0.3) 40%,
+        rgba(57, 255, 20, 0.1) 50%,
+        transparent 60%
+    );
+    width: 300%;
+    animation: flowRightToLeft 2.5s linear;
+    filter: blur(2px);
+}
+
+@keyframes flowRightToLeft {
+    0% {
+        transform: translateX(33.3%);
+    }
+    100% {
+        transform: translateX(-66.6%);
+    }
+}
+
+/* Bottom to top flow */
+.flowing-light.bottom-to-top {
+    background: linear-gradient(to top,
+        transparent 0%,
+        rgba(57, 255, 20, 0.1) 10%,
+        rgba(57, 255, 20, 0.3) 20%,
+        rgba(57, 255, 20, 0.5) 30%,
+        rgba(57, 255, 20, 0.3) 40%,
+        rgba(57, 255, 20, 0.1) 50%,
+        transparent 60%
+    );
+    height: 300%;
+    animation: flowBottomToTop 2.5s linear;
+    filter: blur(2px);
+}
+
+@keyframes flowBottomToTop {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-66.6%);
+    }
+}
+
+/* Left to right flow */
+.flowing-light.left-to-right {
+    background: linear-gradient(to right,
+        transparent 0%,
+        rgba(57, 255, 20, 0.1) 10%,
+        rgba(57, 255, 20, 0.3) 20%,
+        rgba(57, 255, 20, 0.5) 30%,
+        rgba(57, 255, 20, 0.3) 40%,
+        rgba(57, 255, 20, 0.1) 50%,
+        transparent 60%
+    );
+    width: 300%;
+    animation: flowLeftToRight 2.5s linear;
+    filter: blur(2px);
+}
+
+@keyframes flowLeftToRight {
+    0% {
+        transform: translateX(-66.6%);
+    }
+    100% {
+        transform: translateX(33.3%);
     }
 }
 
@@ -114,8 +196,8 @@ body {
         linear-gradient(90deg, transparent calc(100% - var(--grid-gap)), var(--neon-lime-glow) 100%),
         linear-gradient(0deg, transparent calc(100% - var(--grid-gap)), var(--neon-lime-glow) 100%);
     background-size: calc(100% / 15) calc(100% / 15);
-    opacity: 0;
-    filter: blur(2px);
+    opacity: 0.1;
+    filter: blur(1px);
     animation: pulseGridGaps 4s linear infinite;
     pointer-events: none;
     z-index: 0;
@@ -123,7 +205,7 @@ body {
 
 @keyframes pulseGridGaps {
     0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.4; }
+    50% { opacity: 0.3; }
 }
 
 /* Grid cell hover effect */
@@ -153,7 +235,7 @@ body {
 
 /* Login Form Styling */
 .login-form {
-    background-color: rgba(20, 20, 20, 0.8);
+    background-color: var(--form-bg);
     border: 1px solid rgba(57, 255, 20, 0.3);
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
@@ -207,13 +289,18 @@ body {
 }
 
 .form-options a {
-    color: var(--neon-lime);
+    color: #999;
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
+.signup-link a {
+    color: var(--neon-lime);
+}
+
 .form-options a:hover {
+    color: var(--neon-lime);
     text-shadow: 0 0 5px var(--neon-lime-glow);
 }
 

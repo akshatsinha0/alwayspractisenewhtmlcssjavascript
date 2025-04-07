@@ -12,8 +12,11 @@
             <!-- Grid cells will be generated with JavaScript -->
         </div>
         
-        <!-- Flowing light layer -->
-        <div class="flowing-light"></div>
+        <!-- Directional flowing light layers -->
+        <div class="flowing-light top-to-bottom"></div>
+        <div class="flowing-light right-to-left"></div>
+        <div class="flowing-light bottom-to-top"></div>
+        <div class="flowing-light left-to-right"></div>
         
         <div class="login-form">
             <h1>SIGN IN</h1>
@@ -25,8 +28,12 @@
                     <input type="password" id="password" placeholder="Password" required>
                 </div>
                 <div class="form-options">
-                    <a href="#" class="forgot-password">Forget Password</a>
-                    <a href="#" class="signup">Signup</a>
+                    <div class="forgot-link">
+                        <a href="#">Forget Password</a>
+                    </div>
+                    <div class="signup-link">
+                        <a href="#">Signup</a>
+                    </div>
                 </div>
                 <button type="submit" class="login-btn">Login</button>
             </form>
@@ -35,14 +42,64 @@
     
     <script>
         // Generate grid cells dynamically
-        const gridContainer = document.querySelector('.grid-background');
-        const rows = 15;
-        const cols = 15;
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridContainer = document.querySelector('.grid-background');
+            const rows = 15;
+            const cols = 15;
+            
+            for (let i = 0; i < rows * cols; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('grid-cell');
+                gridContainer.appendChild(cell);
+            }
+            
+            // Start the sequential animation
+            startSequentialAnimation();
+        });
         
-        for (let i = 0; i < rows * cols; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('grid-cell');
-            gridContainer.appendChild(cell);
+        function startSequentialAnimation() {
+            const flowingLights = document.querySelectorAll('.flowing-light');
+            
+            // Hide all flowing lights initially
+            flowingLights.forEach(light => {
+                light.style.opacity = '0';
+                light.style.display = 'none';
+            });
+            
+            // Define animation sequence
+            const sequence = [
+                { index: 0, duration: 2500 }, // top-to-bottom
+                { index: 1, duration: 2500 }, // right-to-left
+                { index: 2, duration: 2500 }, // bottom-to-top
+                { index: 3, duration: 2500 }  // left-to-right
+            ];
+            
+            // Function to play each animation in sequence
+            function playAnimation(step) {
+                if (step >= sequence.length) 
+                step = 0;
+                
+                // Hide all animations
+                flowingLights.forEach(light => {
+                    light.style.opacity = '0';
+                    light.style.display = 'none';
+                });
+                
+                // Show current animation
+                const current = flowingLights[sequence[step].index];
+                current.style.display = 'block';
+                setTimeout(() => {
+                    current.style.opacity = '1';
+                }, 50);
+                
+                // Schedule next animation
+                setTimeout(() => {
+                    playAnimation(step + 1);
+                }, sequence[step].duration);
+            }
+            
+            // Start the sequence
+            playAnimation(0);
         }
     </script>
 </body>
