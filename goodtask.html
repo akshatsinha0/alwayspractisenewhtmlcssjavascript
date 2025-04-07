@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Working with Image</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 20px auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    /* Floats the image to the left */
+    .content img {
+      float: left;
+      width: 300px; /* Adjust the width as needed */
+      margin: 0 1em 1em 0; /* top/right/bottom/left margin */
+    }
+    .content p {
+      text-align: justify;
+    }
+    /* Clears float after the content so the footer or next section doesn't wrap */
+    .content::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Working with Image</h1>
+    <div class="content">
+      <img src="https://via.placeholder.com/300x200/ccc/fff?text=Sample+Image" alt="Sample Image" />
+      <p>
+        On the Insert tab, the galleries include items that are designed to coordinate with the overall look
+        of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages,
+        and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate
+        with your current document.
+      </p>
+      <p>
+        You can easily change the formatting of selected text in the document text by choosing a look for the
+        selected text from the Quick Styles gallery of the Home tab. You can also format directly by using the
+        other controls on the Home tab. Most controls offer a choice of using the look from the current theme
+        or using a format that you specify directly.
+      </p>
+      <p>
+        To change the overall look of your document, choose new Theme colors or a new Theme font. To change the
+        basic look of the entire document, go to the Page Layout tab. To change the Quick Styles in the Quick
+        Style gallery, use the Change Current Quick Style Set command. The galleries and Quick Styles gallery
+        provide quick restyling of text, and you can always revert back to the original look of your document.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

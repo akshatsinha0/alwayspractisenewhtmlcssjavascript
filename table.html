@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table and Textarea Example</title>
+  <style>
+    /* Style for the table */
+    table {
+      border : ridge;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    table, th, td {
+      border: 1px dashed
+        #333;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    /* Style for the textarea */
+    textarea {
+      width: 80%;
+      height: 150px;
+      display: block;
+      margin: 20px auto;
+      font-size: 1rem;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">HTML Table with Rowspan and Colspan</h1>
+  
+  <!-- Table Example -->
+  <table>
+    <tr>
+      <th>Header 1</th>
+      <th colspan="2">Header 2 &amp; 3</th>
+      <th>Header 4</th>
+    </tr>
+    <tr>
+      <!-- This cell will span two rows -->
+      <td rowspan="2">Rowspan Cell (Rows 2 &amp; 3)</td>
+      <td>Cell 2,2</td>
+      <td>Cell 2,3</td>
+      <td>Cell 2,4</td>
+    </tr>
+    <tr>
+      <!-- The first cell in this row is combined with the above cell due to rowspan -->
+      <!-- This cell will span two columns -->
+      <td colspan="2">Colspan Cell (Row 3)</td>
+      <td>Cell 3,4</td>
+    </tr>
+    <tr>
+      <td>Cell 4,1</td>
+      <td>Cell 4,2</td>
+      <td>Cell 4,3</td>
+      <td>Cell 4,4</td>
+    </tr>
+  </table>
+  
+  <h2 style="text-align: center;">Textarea Example</h2>
+  
+  <!-- Textarea Example in a Form -->
+  <form>
+    <textarea placeholder="Enter your text here..."></textarea>
+  </form>
+  
+</body>
+
+</html>

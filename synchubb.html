@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Grid Login</title>
+    <link rel="stylesheet" href="syncstyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="grid-background">
+            <!-- Grid cells will be generated with JavaScript -->
+        </div>
+        
+        <!-- Flowing light layer -->
+        <div class="flowing-light"></div>
+        
+        <div class="login-form">
+            <h1>SIGN IN</h1>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="form-options">
+                    <a href="#" class="forgot-password">Forget Password</a>
+                    <a href="#" class="signup">Signup</a>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Generate grid cells dynamically
+        const gridContainer = document.querySelector('.grid-background');
+        const rows = 15;
+        const cols = 15;
+        
+        for (let i = 0; i < rows * cols; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            gridContainer.appendChild(cell);
+        }
+    </script>
+</body>
+</html>

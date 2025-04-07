@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Center-Out Typewriter Effect</title>
+  <style>
+    /* Center the container on the screen */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #111;
+    }
+    /* The typewriter text container */
+    .typewriter {
+      font-family: monospace;
+      font-size: 1.2rem;           /* Reduced text size */
+      color: #fff;
+      white-space: nowrap;         /* Keep text on one line */
+      overflow: hidden;            /* Hide unrevealed text */
+      /* Start by showing only a narrow vertical slice in the center */
+      clip-path: inset(0 50% 0 50%);
+      position: relative;
+      /* Reveal the text from the center outwards over 4 seconds */
+      animation: reveal 4s steps(60, end) forwards;
+    }
+    /* Pseudo-element for the blinking cursor */
+    .typewriter::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: #fff;
+      /* Blink repeatedly until 4s, then fade out */
+      animation: blink 0.75s step-end infinite, fadeOut 0.1s 4s forwards;
+    }
+    /* Keyframes for revealing the text (expands the clip-path) */
+    @keyframes reveal {
+      from {
+        clip-path: inset(0 50% 0 50%);
+      }
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+    /* Keyframes for the blinking effect */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    /* Keyframes to fade out the cursor after the text is fully revealed */
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="typewriter">
+    Welcome to our website. Here, we explore the fascinating world of web development.
+    Enjoy learning, coding, and creating amazing projects with us!
+  </div>
+</body>
+</html>
